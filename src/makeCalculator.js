@@ -8,7 +8,7 @@ function makeCalculator() {
     result: 0,
 
     operate(callback, num) {
-      this.result = callback(this.result, num);
+      callback.call(this, num);
 
       return this;
     },
@@ -19,13 +19,22 @@ function makeCalculator() {
       return this;
     },
 
-    add: (a, b) => a + b,
-    subtract: (a, b) => a - b,
-    multiply: (a, b) => a * b,
-    divide: (a, b) => a / b,
-    getResult() {
-      return this.result;
+    add(num) {
+      this.result += num;
+    },
+
+    subtract(num) {
+      this.result -= num;
+    },
+
+    multiply(num) {
+      this.result *= num;
+    },
+
+    divide(num) {
+      this.result /= num;
     },
   };
 }
+
 module.exports = makeCalculator;
